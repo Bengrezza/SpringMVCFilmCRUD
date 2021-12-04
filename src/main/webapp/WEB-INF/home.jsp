@@ -11,10 +11,11 @@
 </head>
 <body>
 
-<h1>Films R Us!</h1>
-
-<a href="filmID.html">Look up a Film by Film ID</a><br>
-<a href="filmKeyword.html">Look up a Film by Title or Description Keyword</a><br>
+<h1>Welcome to the Spring MVC Film Site</h1>
+<h1>Created by Ben Allegrezza and Chris Lee</h1>
+<h1>Please select from the options below:</h1>
+<a href="filmID.html">Search by Film ID</a><br>
+<a href="filmKeyword.html">Search by Film Title or Description Keyword</a><br>
 <a href="addFilm.html">Add a new Film</a><br>
 
 </body>
