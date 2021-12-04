@@ -1,11 +1,16 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.entities.Film;
 
 @Controller
 public class FilmController {
@@ -13,9 +18,21 @@ public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
 	
-	@RequestMapping({"/", "home.do"})
-	public String home(Model model) {
-		model.addAttribute("TEST", "Hello, Spring MVC!");
-		return "home";
+	//Change Request
+	@RequestMapping(path = { "GetFilmData.do" }, params = "abbr", method = RequestMethod.GET)
+	public ModelAndView getFilmById(Integer Id) {
+		ModelAndView mv = new ModelAndView();
+		Film f = filmDao.findFilmById(Id);
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/SearchByFilmID.jsp");
+		return mv;
+	}
+	@RequestMapping(path = { "GetFilmData.do" }, params = "abbr", method = RequestMethod.GET)
+	public ModelAndView getFilmByKeyword(String keyword) {
+		ModelAndView mv = new ModelAndView();
+		List<Film> f = filmDao.findFilmByKeyword(keyword);
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/filmresult.jsp");
+		return mv;
 	}
 }
