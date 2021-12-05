@@ -1,22 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring MVC Film Site</title>
+<title>Films</title>
 </head>
-<body>
-
-<h1>Welcome to the Spring MVC Film Site</h1>
-<h1>Created by Ben Allegrezza and Chris Lee</h1>
-<h1>Please select from the options below:</h1>
-<a href="filmID.html">Search by Film ID</a><br>
-<a href="filmKeyword.html">Search by Film Title or Description Keyword</a><br>
-<a href="addFilm.html">Add a new Film</a><br>
-
+<body text = "blue">
+	<h1>Welcome to the Film Query Application</h1>
+	 <p style="font-size:100px">&#127909; </p>
+	<a href="searchFilmByIDForm.do"><button class="btn lookup film">Lookup Film</button></a>
+	<br />
+	<a href="addFilmForm.do"><button class="btn add film">Add Film</button></a></a>
+	
+    
+    <h1>By Ben Allegrezza and Chris Lee</h1>
+    <h1>Skill Distillery Cohort #31</h1>    
+	
 </body>
-</html>
+</html>	

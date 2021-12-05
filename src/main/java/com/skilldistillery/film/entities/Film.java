@@ -2,8 +2,9 @@ package com.skilldistillery.film.entities;
 
 import java.util.List;
 
+
 public class Film {
-	private int id;
+	private int filmId;
 	private String title;
 	private String description;
 	private Integer releaseYear;
@@ -25,7 +26,7 @@ public class Film {
 	public Film(int filmId, String title, String description, Integer releaseYear, String language, int rentalDuration,
 			double rate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
-		this.id = filmId;
+		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
@@ -41,7 +42,7 @@ public class Film {
 	public Film(int filmId, String title, String description, Integer releaseYear, int languageID, int rentalDuration,
 			double rate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
-		this.id = filmId;
+		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
@@ -62,12 +63,12 @@ public class Film {
 		this.categoryFilm = categoryFilm;
 	}
 
-	public int getId() {
-		return id;
+	public int getFilmId() {
+		return filmId;
 	}
 
-	public void setId(int filmId) {
-		this.id = filmId;
+	public void setFilmId(int filmId) {
+		this.filmId = filmId;
 	}
 
 	public String getTitle() {
@@ -172,7 +173,7 @@ public class Film {
 		int result = 1;
 		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + filmId;
 		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		result = prime * result + length;
 		long temp;
@@ -207,7 +208,7 @@ public class Film {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (id != other.id)
+		if (filmId != other.filmId)
 			return false;
 		if (language == null) {
 			if (other.language != null)
@@ -247,21 +248,23 @@ public class Film {
 
 	public String toStringFilmByID() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film ID: ").append(id).append("\nTitle: ").append(title).append("\nRelease Year: ")
+		builder.append("Film ID: ").append(filmId).append("\nTitle: ").append(title).append("\nRelease Year: ")
 				.append(releaseYear).append("\nRating: ").append(rating).append("\nDescription: ").append(description)
-				.append("\nLanguage: ").append(language);
+				.append("\nLanguage: ").append(languageID).append("\nSpecial Features: ").append(specialFeatures)
+				.append("\nActors: ").append(actors).append("\nCategories: ").append(categoryFilm);
 		return builder.toString();
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("FilmId: ").append(id).append("\nTitle: ").append(title).append("\nDescription: ")
+		builder.append("FilmId: ").append(filmId).append("\nTitle: ").append(title).append("\nDescription: ")
 				.append(description).append("\nRelease Year: ").append(releaseYear).append("\nLanguage: ")
-				.append(language).append("\nRental Duration: ").append(rentalDuration).append(" days\nLength: ")
+				.append(languageID).append("\nRental Duration: ").append(rentalDuration).append(" days\nLength: ")
 				.append(length).append(" minutes\nRate: $").append(rate).append("\nReplacement Cost: $")
 				.append(replacementCost).append("\nRating: ").append(rating).append("\nSpecial Features: ")
-				.append(specialFeatures).append("\nCategories: ").append(categoryFilm);
+				.append(specialFeatures).append("\nActors: ").append(actors).append("\nCategories: ")
+				.append(categoryFilm);
 		return builder.toString();
 	}
 

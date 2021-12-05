@@ -20,7 +20,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -44,7 +44,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			if (filmResult.next()) {
 				film = new Film();
 
-				film.setId(filmResult.getInt("film.id"));
+				film.setFilmId(filmResult.getInt("film.id"));
 				film.setTitle(filmResult.getString("film.title"));
 				film.setDescription(filmResult.getString("film.description"));
 				film.setReleaseYear(filmResult.getInt("film.release_year"));
@@ -55,8 +55,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
 				film.setRating(filmResult.getString("film.rating"));
 				film.setSpecialFeatures(filmResult.getString("film.special_features"));
-				film.setActors(findActorsByFilmId(film.getId()));
-				film.setCategoryFilm(findCategoryByFilmId(film.getId()));
+				film.setActors(findActorsByFilmId(film.getFilmId()));
+				film.setCategoryFilm(findCategoryByFilmId(film.getFilmId()));
 			}
 			filmResult.close();
 			stmt.close();
@@ -84,7 +84,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			while (filmResult.next()) {
 				Film film = new Film();
 
-				film.setId(filmResult.getInt("film.id"));
+				film.setFilmId(filmResult.getInt("film.id"));
 				film.setTitle(filmResult.getString("film.title"));
 				film.setDescription(filmResult.getString("film.description"));
 				film.setReleaseYear(filmResult.getInt("film.release_year"));
@@ -95,8 +95,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
 				film.setRating(filmResult.getString("film.rating"));
 				film.setSpecialFeatures(filmResult.getString("film.special_features"));
-				film.setActors(findActorsByFilmId(film.getId()));
-				film.setCategoryFilm(findCategoryByFilmId(film.getId()));
+				film.setActors(findActorsByFilmId(film.getFilmId()));
+				film.setCategoryFilm(findCategoryByFilmId(film.getFilmId()));
 
 				films.add(film);
 			}
@@ -206,7 +206,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			conn.setAutoCommit(false); // START TRANSACTION
 			String sql = "DELETE FROM film WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, film.getId());
+			stmt.setInt(1, film.getFilmId());
 			int updateCount = stmt.executeUpdate();
 			conn.commit(); // COMMIT TRANSACTION
 		} catch (SQLException sqle) {
@@ -278,7 +278,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 			if (keys.next()) {
 				int newFilmID = keys.getInt(1);
-				film.setId(newFilmID);
+				film.setFilmId(newFilmID);
 			}
 
 			conn.commit(); // COMMIT TRANSACTION
